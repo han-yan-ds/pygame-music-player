@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Label, Frame, Button, Scale, StringVar, IntVar, LEFT, RIGHT, HORIZONTAL
 import pygame.mixer
 
 class SoundPanel(Frame):
