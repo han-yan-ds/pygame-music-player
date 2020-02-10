@@ -5,6 +5,8 @@ import os
 import pygame.mixer
 import tkinter as gui
 
+VALIDEXTENSIONS = ['ogg', 'mp3', 'm4a', 'flac', 'wav']
+
 def set_dir(path):
     try:
         os.chdir(path)
@@ -32,7 +34,8 @@ mymixer.init()
 #Create Sound Panels
 track_list = os.listdir(os.getcwd())
 for track_name in track_list:
-    if track_name[-4:]=='.ogg':
+    extension = track_name.split('.')[-1]
+    if  extension in VALIDEXTENSIONS:
         SoundPanel(window, mymixer, track_name).pack()
         height += 37
         window.geometry('450x%s+300+300' %str(height))
