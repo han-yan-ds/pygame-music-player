@@ -6,6 +6,7 @@ import pygame.mixer
 import tkinter as gui
 
 VALIDEXTENSIONS = ['ogg', 'flac', 'wav']
+SOUNDDIR = './sounds'
 
 def set_dir(path):
     try:
@@ -13,6 +14,15 @@ def set_dir(path):
     except:
         os.mkdir(path)
         os.chdir(path)
+
+
+def filterExtensions(fileList, validExtensionsList):
+    result = []
+    for filename in fileList:
+        extension = filename.split('.')[-1]
+        if extension in validExtensionsList:
+            result.append(filename)
+    return result
 
 
 def __main__(soundDir):
@@ -33,14 +43,13 @@ def __main__(soundDir):
     #Define Sound Files
     set_dir(soundDir)
     #Create Sound Panels
-    track_list = os.listdir(os.getcwd())
-    for track_name in track_list:
-        extension = track_name.split('.')[-1]
-        if  extension in VALIDEXTENSIONS:
-            SoundPanel(window, mymixer, track_name).pack()
-            height += 37
-            window.geometry('450x%s+300+300' %str(height))
+    tracklist = filterExtensions(os.listdir(os.getcwd()), VALIDEXTENSIONS)
+    for track in tracklist:
+        SoundPanel(window, mymixer, track).pack()
+        height += 37
+        window.geometry('450x%s+300+300' %str(height))
     # Run Window    
     window.mainloop()
 
-__main__('./sounds')
+
+__main__(SOUNDDIR)
