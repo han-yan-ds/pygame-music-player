@@ -1,11 +1,11 @@
 import sys
-from sound_panel import *
+from sound_panel import SoundPanel
 
 import os
 import pygame.mixer
 import tkinter as gui
 
-VALIDEXTENSIONS = ['ogg', 'mp3', 'm4a', 'flac', 'wav']
+VALIDEXTENSIONS = ['ogg', 'flac', 'wav']
 
 def set_dir(path):
     try:
